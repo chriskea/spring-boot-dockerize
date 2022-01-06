@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service # Resource kind
+metadata: # Metadata of the resource
+  name: spring-boot-k8s-service
+spec:
+  selector:
+    app: spring-boot-k8s # Should match the deployment selector name
+  ports:
+    - protocol: TCP
+      port: 8080 # Port the service is running on in the cluster
+      targetPort: 8080 # Port exposed by the server
+  type: NodePort # Type of the service

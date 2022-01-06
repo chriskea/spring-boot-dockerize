@@ -1,0 +1,21 @@
+# Docs here: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment # k8s resource kind we're creating
+metadata:
+  name: spring-boot-k8s
+spec:
+  replicas: 3 # Number of pods that will be created for this deployment
+  selector:
+    matchLabels:
+      app: spring-boot-k8s
+  template:
+    metadata:
+      labels:
+        app: spring-boot-k8s
+    spec:
+      containers:
+        - name: spring-boot-k8s
+          image: spring-boot-k8s-demo:1.0
+          imagePullPolicy: IfNotPresent # If not in local, pull from dockerhub
+          ports:
+            - containerPort: 8080 # The port the container is running in the cluster (match the docker file)
